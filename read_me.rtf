@@ -8,10 +8,11 @@
 \
 This source code is used for the paper: Optimal Filters for Phylogenetic Birth-Death Models - KV Parag and OG Pybus. This is the birth-death extension to the coalescent work in Parag 2017\
 \
-The main code, snyderCompare.m applies a Snyder filter to birth-death processes (BDPs) and compares the results to TESS MCMC samples that must have been run first and in batch (using batchTess.R). For single MCMC runs use tessSingle.R and snyderSingle.m.\
+The main code is in the BDP snyder folder and the empirical results in the Agamid snyder folder.\
+\
+In the main code snyderCompare.m applies a Snyder filter to birth-death processes (BDPs) and compares the results to TESS MCMC samples that must have been run first and in batch (using batchTess.R). For single MCMC runs use tessSingle.R and snyderSingle.m.\
 \
 Current models are the speciation-decay (called hohna in the script for short as it is from Hohna 2014) and the logistic (from Paradis 2010). New models can be encoded by appending the rateSet string cell and adding a case in the rateID set.\
-\
 \
 1. Birth-death models require a parametric description for lamt and mut with parameters in a vector x. Any model can therefore be specified by defining these 2 functions.\
 \
@@ -22,6 +23,8 @@ Current models are the speciation-decay (called hohna in the script for short as
 3. TESS descriptions must have been run first to obtain the branching times (reconstructed BDP), which are in reverse time and hence converted once the reverseData boolean is set\
 \
 4. The actual Snyder filter is implemented in the snyderFilterPar function with the reconstructed BDP (Nee et al 1994) rates calculated in getNeeRatesTrapzPar\
+\
+5. Various plotting functions are included to produce the figures in the paper that accompanies this code. It is possible to run the filter without the need for TESS, but this is not implemented here as we make use of TESS to simulate the time-varying BDP trees according to different conditions.\
 \
 \
 \
