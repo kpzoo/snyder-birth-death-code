@@ -1,0 +1,54 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf470
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\froman\fcharset0 Times-Roman;}
+{\colortbl;\red255\green255\blue255;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 READ ME - BDP Snyder Inference Code\
+\
+This source code is used for the paper: Optimal Filters for Phylogenetic Birth-Death Models - KV Parag and OG Pybus. This is the birth-death extension to the coalescent work in Parag 2017\
+\
+The main code, snyderCompare.m applies a Snyder filter to birth-death processes (BDPs) and compares the results to TESS MCMC samples that must have been run first and in batch (using batchTess.R). For single MCMC runs use tessSingle.R and snyderSingle.m.\
+\
+Current models are the speciation-decay (called hohna in the script for short as it is from Hohna 2014) and the logistic (from Paradis 2010). New models can be encoded by appending the rateSet string cell and adding a case in the rateID set.\
+\
+\
+1. Birth-death models require a parametric description for lamt and mut with parameters in a vector x. Any model can therefore be specified by defining these 2 functions.\
+\
+2. The logistic and hohna zip files contain the TESS R package and Snyder filter results for the logistic and speciation-decay model respectively. \
+\
+3. For the logistic model, load q501.mat and define qnlast as a cell(1, 100). Store in its first 50 entries the q50 variable. Then load q502.mat and store the variable q100 in its remaining 51:100 cell entries. Then save this variable to the logistic_3_100 file and add to the batch folder in the logistic folder, which must be unzipped. This complication was due to size limits for github file storage.\
+\
+3. TESS descriptions must have been run first to obtain the branching times (reconstructed BDP), which are in reverse time and hence converted once the reverseData boolean is set\
+\
+4. The actual Snyder filter is implemented in the snyderFilterPar function with the reconstructed BDP (Nee et al 1994) rates calculated in getNeeRatesTrapzPar\
+\
+\
+\
+\
+References:\
+\
+Parag 2017: \expnd0\expndtw0\kerning0
+Parag, K. and Pybus, O. (2017). Optimal Point Process Filtering and Estimation of the Coalescent Process. Journal of Theoretical Biology, pages 153\'9667. \kerning1\expnd0\expndtw0 \
+\
+Hohna 2014: \expnd0\expndtw0\kerning0
+Hohna, S. (2014). Likelihood Inference of Non-Constant Diversification Rates with Incomplete Taxon Sampling. PLoS ONE, 9(1). \
+\kerning1\expnd0\expndtw0 \
+TESS: \expnd0\expndtw0\kerning0
+Hohna, S., May, M., and Moore, B. (2016). Tess: an R Package for Efficiently \
+\pard\pardeftab720\sl200\sa240\partightenfactor0
+\cf0 Simulating Phylogenetic Trees and Performing Bayesian Inference of Lineage Diversification Rates. Bioinformatics, 32(5), 789\'9691. 
+\f1 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0 \cf0 \kerning1\expnd0\expndtw0 Paradis 2011: \expnd0\expndtw0\kerning0
+Paradis, E. (2011). Time-Dependent Speciation and Extinction from Phylogenies: a Least Squares Approach. Evolution, 65(3), 661\'9672. \
+\kerning1\expnd0\expndtw0 \
+Rabosky 2008: \expnd0\expndtw0\kerning0
+Rabosky, D. and Lovette, I. (2008). Explosive evolutionary radiations: Decreasing speciation or increasing extinction through time. Evolution, 62(8), 1866\'9675. \
+\kerning1\expnd0\expndtw0 \
+\
+\
+\
+\
+}
